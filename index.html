@@ -1,182 +1,957 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html><head>
-<title>Data Scientist & Analyst</title>
+<html lang="en">
+<head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="assets/css/main.css" />
-<noscript><link rel="stylesheet" href="assets/css/nos§cript.css" /></noscript>
+<title>Iqra Rafiq — Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3260;
+    --accent: #2563eb;
+    --accent-glow: #3b82f6;
+    --gold: #f59e0b;
+    --cream: #f8f5f0;
+    --warm-white: #fefcf9;
+    --text: #1c1c2e;
+    --muted: #6b7280;
+    --light-line: #e5e1da;
+    --card-bg: #ffffff;
+    --tag-bg: #eff6ff;
+    --tag-color: #1d4ed8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: .4;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    right: -200px; top: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block; width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.0;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .hero-name em { color: var(--accent-glow); font-style: italic; }
+
+  .hero-title {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 32px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-bio {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    max-width: 440px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-chips {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 48px;
+  }
+  .chip {
+    padding: 6px 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.03em;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s;
+  }
+  .chip:hover {
+    border-color: var(--accent-glow);
+    color: #fff;
+    background: rgba(37,99,235,0.15);
+  }
+
+  .hero-ctas {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-glow); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+  }
+  .hero-photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border: 1px solid rgba(37,99,235,0.4);
+    border-radius: 50%;
+    animation: pulse-ring 3s ease-in-out infinite;
+  }
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -24px;
+    border: 1px solid rgba(37,99,235,0.15);
+    border-radius: 50%;
+    animation: pulse-ring 3s ease-in-out infinite 0.5s;
+  }
+  @keyframes pulse-ring {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.04); opacity: 0.6; }
+  }
+
+  .hero-photo {
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    display: block;
+  }
+
+  .hero-stat-bar {
+    position: absolute;
+    bottom: -20px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px 24px;
+    display: flex; gap: 28px;
+    white-space: nowrap;
+    backdrop-filter: blur(10px);
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--gold); }
+  .stat-label { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,252,249,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-line);
+    padding: 0 80px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 80px; max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--light-line), transparent);
+    max-width: 80px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+  }
+
+  /* ── EXPERTISE BAND ── */
+  #expertise {
+    background: var(--navy);
+    padding: 80px;
+    max-width: 100%;
+    margin: 0;
+  }
+  #expertise > div { max-width: 1200px; margin: 0 auto; }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+  .expertise-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 36px 32px;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .expertise-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .expertise-card:hover::before { transform: scaleX(1); }
+  .expertise-card:hover { background: rgba(37,99,235,0.08); }
+
+  .exp-icon {
+    font-size: 28px; margin-bottom: 16px;
+  }
+  .exp-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .exp-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+  }
+  .exp-tools {
+    margin-top: 16px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .exp-tool {
+    font-size: 11px;
+    padding: 3px 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { padding-top: 100px; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--light-line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(15,31,61,0.12);
+    border-color: transparent;
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+    flex-direction: row;
+  }
+
+  .project-img {
+    width: 100%; height: 200px;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    flex-shrink: 0;
+  }
+
+  .project-card.featured .project-img {
+    width: 380px; height: auto;
+    min-height: 280px;
+  }
+
+  .project-body { padding: 28px 32px; flex: 1; }
+
+  .project-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 14px;
+  }
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: var(--tag-bg);
+    color: var(--tag-color);
+    border-radius: 4px;
+  }
+  .tag.orange { background: #fff7ed; color: #c2410c; }
+  .tag.green { background: #f0fdf4; color: #15803d; }
+  .tag.purple { background: #faf5ff; color: #7c3aed; }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+
+  .project-impact {
+    background: var(--cream);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .project-impact span { color: var(--muted); font-weight: 300; }
+
+  .project-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 10px; }
+  .project-link::after { content: '→'; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--cream); max-width: 100%; padding: 100px 80px; }
+  #experience > div { max-width: 1200px; margin: 0 auto; }
+
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1px; background: var(--light-line);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 48px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -36px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+  }
+
+  .timeline-period {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .timeline-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .timeline-company {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .timeline-bullets { list-style: none; }
+  .timeline-bullets li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .timeline-bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .skill-group {
+    background: var(--card-bg);
+    border: 1px solid var(--light-line);
+    border-radius: 10px;
+    padding: 24px 20px;
+  }
+  .skill-group-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .skill-item {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--light-line);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-item:last-child { border-bottom: none; }
+  .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--navy);
+    max-width: 100%;
+    padding: 100px 80px;
+    text-align: center;
+  }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::after { display: none; }
+  #contact .section-title { color: #fff; }
+  #contact .section-sub { color: rgba(255,255,255,0.55); margin: 0 auto 48px; }
+
+  .contact-links {
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .contact-link:hover {
+    background: rgba(37,99,235,0.2);
+    border-color: var(--accent-glow);
+    color: #fff;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 24px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* ── FADE IN ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 60px 32px; }
+    nav { padding: 0 32px; }
+    nav .nav-links { display: none; }
+    section { padding: 60px 32px; }
+    #expertise { padding: 60px 32px; }
+    #experience { padding: 60px 32px; }
+    #contact { padding: 60px 32px; }
+    footer { padding: 24px 32px; flex-direction: column; gap: 8px; text-align: center; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { flex-direction: column; }
+    .project-card.featured .project-img { width: 100%; min-height: 200px; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
 </head>
-<body class="is-preload">
+<body>
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Data Scientist — Amsterdam</div>
+    <h1 class="hero-name">Iqra<br><em>Rafiq</em></h1>
+    <p class="hero-title">Machine Learning · NLP · Time Series · MLOps</p>
+    <p class="hero-bio">
+      Applied Data Scientist building end-to-end ML pipelines that turn complex data into real business impact. Experienced across pharma, fintech, public sector and AI tooling — with a focus on NLP, forecasting, and deploying production-ready models.
+    </p>
+    <div class="hero-chips">
+      <span class="chip">Python</span>
+      <span class="chip">PyTorch</span>
+      <span class="chip">NLP</span>
+      <span class="chip">Time Series</span>
+      <span class="chip">Docker</span>
+      <span class="chip">SQL</span>
+      <span class="chip">MLOps</span>
+      <span class="chip">Power BI</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="https://www.linkedin.com/in/iqra-rafiq-982a01bb/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div style="position: relative;">
+      <div class="hero-photo-wrap">
+        <img src="Screenshot 2025-08-27 at 15.58.47.png" alt="Iqra Rafiq" class="hero-photo" />
+      </div>
+      <div class="hero-stat-bar">
+        <div class="stat">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1M+</div>
+          <div class="stat-label">Records</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-				<!-- Intro -->
-				<div id="intro" style="text-align: left; padding-left: 50px;">
-   				 <img src="Screenshot 2025-08-27 at 15.58.47.png" alt="Iqra Rafiq" 
-        		 style="width:150px; height:150px; border-radius:50%; margin-bottom:20px; object-fit:cover;">
-   				 <h1>Iqra Rafiq</h1>
-   				 <h2>Data Scientist & Analyst</h2>
-    			<p>Welcome to my portfolio! I am passionate about turning data into actionable insights, create solutions that matter. Check out my work and let’s connect, explore and and create something impactful together! <a href="https://www.linkedin.com/in/iqra-rafiq-982a01bb/">@IqraRafiq</a></p>
- 			   <ul class="actions">
-      			  <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Portfolio</a></li>
-  				  </ul>
-						</div>
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">IR.</a>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:iqraarafiq@gmail.com" class="btn-primary" style="font-size:13px; padding:10px 20px;">Get in Touch</a>
+</nav>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Projects</a>
-					</header>
+<!-- EXPERTISE -->
+<div id="expertise">
+  <div>
+    <div class="section-label" style="color: var(--gold);">What I Do</div>
+    <h2 class="section-title" style="color:#fff;">Practice Areas</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.5);">Specialising in the domains that drive AI impact at scale — aligned with industry-leading practice areas.</p>
+    <div class="expertise-grid">
+      <div class="expertise-card fade-up">
+        <div class="exp-icon">📈</div>
+        <div class="exp-title">Time Series Forecasting</div>
+        <div class="exp-desc">End-to-end forecasting pipelines using sensor data, transaction logs, and temporal signals to drive operational decisions.</div>
+        <div class="exp-tools">
+          <span class="exp-tool">LSTM / RNN</span>
+          <span class="exp-tool">Scikit-learn</span>
+          <span class="exp-tool">PyTorch</span>
+          <span class="exp-tool">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="expertise-card fade-up">
+        <div class="exp-icon">🔤</div>
+        <div class="exp-title">NLP & Document AI</div>
+        <div class="exp-desc">Production NLP systems for document processing, classification, and information extraction — deployed at enterprise scale.</div>
+        <div class="exp-tools">
+          <span class="exp-tool">Transformers</span>
+          <span class="exp-tool">spaCy</span>
+          <span class="exp-tool">LangChain</span>
+          <span class="exp-tool">HuggingFace</span>
+        </div>
+      </div>
+      <div class="expertise-card fade-up">
+        <div class="exp-icon">🎯</div>
+        <div class="exp-title">Customer Intelligence</div>
+        <div class="exp-desc">Segmentation, propensity modelling, and campaign optimisation — turning customer data into actionable marketing strategy.</div>
+        <div class="exp-tools">
+          <span class="exp-tool">K-Means / DBSCAN</span>
+          <span class="exp-tool">XGBoost</span>
+          <span class="exp-tool">Python</span>
+          <span class="exp-tool">SQL</span>
+        </div>
+      </div>
+      <div class="expertise-card fade-up">
+        <div class="exp-icon">⚙️</div>
+        <div class="exp-title">MLOps & Deployment</div>
+        <div class="exp-desc">From notebook to production — containerised, reproducible, and maintainable ML systems following engineering best practices.</div>
+        <div class="exp-tools">
+          <span class="exp-tool">Docker</span>
+          <span class="exp-tool">Python</span>
+          <span class="exp-tool">Git</span>
+          <span class="exp-tool">CI/CD Pipelines</span>
+        </div>
+      </div>
+      <div class="expertise-card fade-up">
+        <div class="exp-icon">🧠</div>
+        <div class="exp-title">Deep Learning</div>
+        <div class="exp-desc">Neural architectures for sequential, vision, and language tasks — applied to real-world problems across diverse industry verticals.</div>
+        <div class="exp-tools">
+          <span class="exp-tool">PyTorch</span>
+          <span class="exp-tool">TensorFlow</span>
+          <span class="exp-tool">CNN / RNN</span>
+          <span class="exp-tool">Transfer Learning</span>
+        </div>
+      </div>
+      <div class="expertise-card fade-up">
+        <div class="exp-icon">🗄️</div>
+        <div class="exp-title">Data Engineering & Analytics</div>
+        <div class="exp-desc">Large-scale data processing, spatial analytics, and governance pipelines that underpin reliable, high-quality AI systems.</div>
+        <div class="exp-tools">
+          <span class="exp-tool">SQL</span>
+          <span class="exp-tool">qGIS</span>
+          <span class="exp-tool">Power BI</span>
+          <span class="exp-tool">Excel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Projects</a></li>
-							
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/iqra-rafiq-982a01bb/" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-							<li><a href="https://github.com/IqraRafiq213/IqraRafiq213/blob/main/README.md" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title">Selected Projects</h2>
+  <p class="section-sub">Real-world data science across forecasting, NLP, customer intelligence, and AI agents.</p>
 
-				<!-- Main -->
-					<div id="main">
+  <div class="projects-grid">
 
-						<!-- Featured Post -->
-							<section class="posts">
-  <article>
-    <header>
-      <h2><a href="#">Data Cleaning & Visualisation - Deforestation Free Supply Chain Analysis</a></h2>
-    </header>
-    <a href="https://github.com/IqraRafiq213/Data-Cleaning-" class="image fit"><img src="spread-trees-volcanic-relief.jpg" alt="" /></a>
-    <p>Designed and implemented a SQL-based data preprocessing workflow integrated with QGIS for spatial analysis to detect deforestation areas, map supplier linkages, and enable automated supply chain risk assessments.</p>
-    <ul class="actions special">
-      <li><a href="https://github.com/IqraRafiq213/Data-Cleaning-" class="button">View Project</a></li>
-    </ul>
-  </article>
+    <!-- FEATURED -->
+    <div class="project-card featured fade-up">
+      <div class="project-img" style="font-size: 64px; background: linear-gradient(135deg,#0a2d1a,#0f4a2a);">💳</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag green">Predictive Modelling</span>
+          <span class="tag orange">Fintech</span>
+          <span class="tag">MLOps</span>
+        </div>
+        <h3 class="project-title">Credit Risk Prediction — Netherlands Financial Data</h3>
+        <p class="project-desc">End-to-end credit risk classification system built with a production-grade architecture: modular source code in <code>src/</code>, trained models persisted in <code>models/</code>, a REST API layer in <code>api/</code>, a front-end app in <code>app/</code>, and a full test suite in <code>tests/</code>. The pipeline covers data preprocessing, feature engineering, model training with scikit-learn, evaluation, and deployment — structured for real-world maintainability and reproducibility.</p>
+        <div class="project-impact">⚡ Impact: <span>Demonstrates full ML engineering discipline — from notebook exploration through to a deployed, testable API. Directly relevant to Artefact's financial services clients and MLOps practice.</span></div>
+        <a href="https://github.com/IqraRafiq213/credit_risk_nl" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+    </div>
 
-  <article>
-    <header>
-      <h2><a href="#">SmolAgentPDF: Local LLM-Based PDF Chat Agent</a></h2>
-    </header>
-    <a href="https://github.com/IqraRafiq213/smolagent_pdf" class="image fit"><img src="Screenshot 2025-09-25 at 18.15.27.png" alt="" /></a>
-    <p>SMOLAgent: Think ‘give a task, get things done automatically’.</p>
-    <ul class="actions special">
-      <li><a href="https://github.com/IqraRafiq213/smolagent_pdf" class="button">VIEW PROJECT</a></li>
-    </ul>
-  </article>
+    <div class="project-card fade-up">
+      <div class="project-img" style="font-size:48px; background:linear-gradient(135deg,#0f2d40,#1a4060);">📊</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag orange">Time Series</span>
+          <span class="tag">Forecasting</span>
+        </div>
+        <h3 class="project-title">Telemarketing Success Forecasting — Bunq Bank</h3>
+        <p class="project-desc">Applied supervised ML to predict the likelihood of telemarketing campaign success for a Dutch neo-bank. Feature engineering on customer behaviour data, model selection and evaluation pipeline in Python.</p>
+        <div class="project-impact">⚡ Impact: <span>Combines predictive modelling with marketing ROI context — core to Artefact's customer intelligence practice.</span></div>
+        <a href="https://github.com/IqraRafiq213/LEVERAGING-MACHINE-LEARNING-TO-FORECAST-TELEMARKETING-SUCCESS-FOR-BUNQ-BANK" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+    </div>
 
-  <article>
-    <header>
-      <h2><a href="#">Unsupervised Machine Learning Project - Customer Segmentation </a></h2>
-    </header>
-    <a href="https://github.com/IqraRafiq213/Customer_Segmentation_Unsupervised_ML/blob/main/Customer_segmentation_new.ipynb" class="image fit"><img src="download.png" alt="" /></a>
-    <p>Implemented K-Means clustering on customer transaction data, performing feature engineering and data preprocessing in Python to identify meaningful customer segments. Visualized and evaluated clusters to provide actionable insights for targeted marketing.</p>
-    <ul class="actions special">
-      <li><a href="https://github.com/IqraRafiq213/Customer_Segmentation_Unsupervised_ML/blob/main/Customer_segmentation_new.ipynb" class="button">View Project</a></li>
-    </ul>
-  </article>
+    <div class="project-card fade-up">
+      <div class="project-img" style="font-size:48px; background:linear-gradient(135deg,#1a0f3d,#2d1a60);">🗑️</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag orange">Time Series</span>
+          <span class="tag green">Deep Learning</span>
+        </div>
+        <h3 class="project-title">Waste Contamination Detection — WasteVision Hangelo</h3>
+        <p class="project-desc">Developed a data-driven ML model using time-series sensor data to detect contamination events in waste streams. End-to-end pipeline from raw sensor ingestion through model deployment.</p>
+        <div class="project-impact">⚡ Impact: <span>Applied time-series forecasting to a real industrial client in the Netherlands — scalable IoT data problem.</span></div>
+        <a href="https://github.com/IqraRafiq213" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+    </div>
 
-  <article>
-    <header>
-      <h2><a href="#">LEVERAGING MACHINE LEARNING TO FORECAST TELEMARKETING SUCCESS</a></h2>
-    </header>
-    <a href="https://github.com/IqraRafiq213/LEVERAGING-MACHINE-LEARNING-TO-FORECAST-TELEMARKETING-SUCCESS" class="image fit"><img src="ML.png" alt="" /></a>
-    <p>Applied machine learning techniques to forecast the success of telemarketing campaigns.</p>
-    <ul class="actions special">
-      <li><a href="https://github.com/IqraRafiq213/LEVERAGING-MACHINE-LEARNING-TO-FORECAST-TELEMARKETING-SUCCESS-FOR-BUNQ-BANK" class="button">View Project</a></li>
-    </ul>
-  </article>
+    <div class="project-card fade-up">
+      <div class="project-img" style="font-size:48px; background:linear-gradient(135deg,#0f3d1a,#1a6030);">👥</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Customer Intelligence</span>
+          <span class="tag purple">Unsupervised ML</span>
+        </div>
+        <h3 class="project-title">Customer Segmentation — Unsupervised ML</h3>
+        <p class="project-desc">K-Means clustering on customer transaction data with feature engineering and PCA dimensionality reduction. Visualised and interpreted segments to deliver actionable targeting recommendations.</p>
+        <div class="project-impact">⚡ Impact: <span>Directly demonstrates customer intelligence capability — identifying meaningful segments for marketing ROI optimisation.</span></div>
+        <a href="https://github.com/IqraRafiq213/Customer_Segmentation_Unsupervised_ML/blob/main/Customer_segmentation_new.ipynb" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+    </div>
 
-  <article>
-    <header>
-      <h2><a href="#">Data Visualisation</a></h2>
-    </header>
-    <a href="https://github.com/IqraRafiq213/Data-Visualisation/blob/main/Uber.ipynb" class="image fit"><img src="Uber.png" alt="" /></a>
-    <p>for Exploratory Data Analysis. comparing categories, finding relations between variables, exploring distributions and visualising timeseries data</p>
-    <ul class="actions special">
-      <li><a href="https://github.com/IqraRafiq213/Data-Visualisation/blob/main/Uber.ipynb" class="button">View Project</a></li>
-    </ul>
-  </article>
+    <div class="project-card fade-up">
+      <div class="project-img" style="font-size:48px; background:linear-gradient(135deg,#3d1f0f,#601a0f);">🌳</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag green">Data Engineering</span>
+          <span class="tag">SQL</span>
+        </div>
+        <h3 class="project-title">Deforestation-Free Supply Chain Analysis</h3>
+        <p class="project-desc">SQL-based data preprocessing and QGIS spatial analysis to detect deforestation risk, map supplier linkages, and automate EU EUDR compliance assessments across 200,000+ records.</p>
+        <div class="project-impact">⚡ Impact: <span>Published research output — The Netherlands as largest EU importer of EUDR-scope commodities.</span></div>
+        <a href="https://github.com/IqraRafiq213/Data-Cleaning-" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-img" style="font-size:48px; background:linear-gradient(135deg,#2d0f3d,#4a1a60);">🚗</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag purple">Data Visualisation</span>
+          <span class="tag">EDA</span>
+        </div>
+        <h3 class="project-title">Uber Data EDA & Visualisation</h3>
+        <p class="project-desc">Exploratory data analysis on Uber trip data — comparing categories, finding inter-variable relationships, exploring distributions, and visualising time-series patterns in demand behaviour.</p>
+        <div class="project-impact">⚡ Impact: <span>Demonstrates rigorous analytical thinking and communication through data visualisation — core consulting skill.</span></div>
+        <a href="https://github.com/IqraRafiq213/Data-Visualisation/blob/main/Uber.ipynb" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-								
-							</section>
+<!-- EXPERIENCE -->
+<div id="experience">
+  <div>
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">Delivering data science across consulting, pharma, fintech, and public sector environments.</p>
 
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									
-								</div>
-							</footer>
+    <div class="timeline">
+      <div class="timeline-item fade-up">
+        <div class="timeline-period">Oct 2025 — Present</div>
+        <div class="timeline-role">Data Scientist & AI Specialist</div>
+        <div class="timeline-company">MySolution · Utrecht</div>
+        <ul class="timeline-bullets">
+          <li>Diagnosed failure modes in a production recruitment chatbot through systematic error analysis, improving model quality and user experience.</li>
+          <li>Leveraged Python and SQL to analyse high-volume interaction data, identifying user behaviour patterns that informed targeted optimisation strategies.</li>
+          <li>Contributed to an internal AI toolbox by writing optimised, MLOps-aligned code following engineering best practices.</li>
+        </ul>
+      </div>
+      <div class="timeline-item fade-up">
+        <div class="timeline-period">Mar 2025 — Aug 2025</div>
+        <div class="timeline-role">Data Scientist (Working Student)</div>
+        <div class="timeline-company">Johnson & Johnson · Leiden</div>
+        <ul class="timeline-bullets">
+          <li>Designed and deployed a production NLP pipeline in Python to automate pharmaceutical document processing, significantly reducing manual effort.</li>
+          <li>Conducted in-depth analysis on datasets exceeding 1 million records, delivering clean, accurate outputs with minimal revisions.</li>
+        </ul>
+      </div>
+      <div class="timeline-item fade-up">
+        <div class="timeline-period">Aug 2024 — Jan 2025</div>
+        <div class="timeline-role">Data Analyst</div>
+        <div class="timeline-company">Aid Environment · Amsterdam</div>
+        <ul class="timeline-bullets">
+          <li>Built and maintained a centralised database of 200,000+ records, achieving 98% improvement in operational efficiency through enhanced data management.</li>
+          <li>Implemented a SQL-based supply chain monitoring system with Excel and qGIS, ensuring full EU EUDR compliance.</li>
+          <li>Co-authored published research on Dutch commodity imports in scope of the EUDR.</li>
+        </ul>
+      </div>
+      <div class="timeline-item fade-up">
+        <div class="timeline-period">Feb 2023 — Jun 2023</div>
+        <div class="timeline-role">Digital Transformation Designer (Traineeship)</div>
+        <div class="timeline-company">Municipality Haarlemmermeer · Schiphol</div>
+        <ul class="timeline-bullets">
+          <li>Applied design thinking and user research to improve digital service adoption for a public-sector client.</li>
+          <li>Led an awareness campaign increasing prototype adoption by over 30%.</li>
+        </ul>
+      </div>
+    </div>
 
-					</div>
+    <!-- SKILLS -->
+    <div class="skills-grid" style="margin-top:80px;">
+      <div class="skill-group fade-up">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-item"><span class="skill-dot"></span>Python (Advanced)</div>
+        <div class="skill-item"><span class="skill-dot"></span>SQL</div>
+        <div class="skill-item"><span class="skill-dot"></span>R</div>
+      </div>
+      <div class="skill-group fade-up">
+        <div class="skill-group-title">ML / DL</div>
+        <div class="skill-item"><span class="skill-dot"></span>PyTorch</div>
+        <div class="skill-item"><span class="skill-dot"></span>TensorFlow</div>
+        <div class="skill-item"><span class="skill-dot"></span>Scikit-learn</div>
+        <div class="skill-item"><span class="skill-dot"></span>HuggingFace</div>
+      </div>
+      <div class="skill-group fade-up">
+        <div class="skill-group-title">Infrastructure</div>
+        <div class="skill-item"><span class="skill-dot"></span>Docker</div>
+        <div class="skill-item"><span class="skill-dot"></span>Git / GitHub</div>
+        <div class="skill-item"><span class="skill-dot"></span>MLOps Pipelines</div>
+      </div>
+      <div class="skill-group fade-up">
+        <div class="skill-group-title">Analytics & Viz</div>
+        <div class="skill-item"><span class="skill-dot"></span>Power BI</div>
+        <div class="skill-item"><span class="skill-dot"></span>qGIS</div>
+        <div class="skill-item"><span class="skill-dot"></span>Excel</div>
+        <div class="skill-item"><span class="skill-dot"></span>Matplotlib / Seaborn</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Location</h3>
-								<p>Amsterdam, The Netherlands</p>
-							</section>
-						
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">iqraarafiq@gmail.com</a></p>
-							</section>
-							<section>
-								<h3>Contact</h3>
-									<p><a href="#">+31657313819</a></p>
-								</ul>
-							</section>
-						</section>
-					</footer>
+<!-- CONTACT -->
+<div id="contact">
+  <div class="section-label">Let's Talk</div>
+  <h2 class="section-title">Get In Touch</h2>
+  <p class="section-sub">Open to data science roles in consulting and AI — based in Amsterdam, no sponsorship required.</p>
+  <div class="contact-links">
+    <a href="mailto:iqraarafiq@gmail.com" class="contact-link">✉️ iqraarafiq@gmail.com</a>
+    <a href="https://www.linkedin.com/in/iqra-rafiq-982a01bb/" target="_blank" class="contact-link">💼 LinkedIn</a>
+    <a href="https://github.com/IqraRafiq213" target="_blank" class="contact-link">🐙 GitHub</a>
+    <a href="tel:+31657313819" class="contact-link">📞 +31 657 313 819</a>
+  </div>
+</div>
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Iqra Rafiq · Data Scientist · Amsterdam</p>
+  <p>No sponsorship required to work in the Netherlands.</p>
+</footer>
 
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
 </html>
